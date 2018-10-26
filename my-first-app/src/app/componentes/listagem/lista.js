@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import * as actions from "../../actions";
 
-const Cliente = cliente => (
+const Cliente = ({cliente}) => (
   <tr>
     <td>{cliente.nome}</td>
     <td> {cliente.telefone}</td>
@@ -24,6 +24,13 @@ class ListaClientes extends React.Component {
       return new Date(a.criadoEm) - new Date(b.criadoEm);
   };
 
+  pesquisa = ({ nome, endereco, email, cpf }) => {
+    const { pesquisa } = this.props;
+    if (!pesquisa) return true;
+    const item = [nome, endereco, email, cpf].join(";");
+    return item.includes(pesquisa);
+  };
+
   render() {
     const { clientes } = this.props;
     return (
@@ -38,9 +45,12 @@ class ListaClientes extends React.Component {
             </tr>
           </thead>
           <tbody>
-            {clientes.sort(this.ordenacao).map((cliente, index) => (
-              <Cliente cliente={cliente} key={index} />
-            ))}
+            {(clientes || [])
+              .filter(this.pesquisa)
+              .sort(this.ordenacao)
+              .map((cliente, index) => (
+                <Cliente cliente={cliente} key={index} />
+              ))}
           </tbody>
         </table>
       </div>
@@ -50,7 +60,8 @@ class ListaClientes extends React.Component {
 
 const mapStateToProps = state => ({
   clientes: state.clientes.clientes,
-  ordenacao: state.clientes.ordenacao
+  ordenacao: state.clientes.ordenacao,
+  pesquisa: state.clientes.pesquisa
 });
 
 export default connect(

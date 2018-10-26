@@ -3,7 +3,8 @@ import {
   ADD_CLIENTES,
   UPDATE_CLIENTE,
   REMOVE_CLIENTE,
-  SET_ORDENACAO
+  SET_ORDENACAO,
+  SET_PESQUISA
 } from "../actions/types";
 
 export default (state = { ordenacao: "a-z" }, action) => {
@@ -39,6 +40,12 @@ export default (state = { ordenacao: "a-z" }, action) => {
       return {
         ...state,
         ordenacao: action.ordenacao
+      };
+
+    case SET_PESQUISA:
+      return {
+        ...state,
+        pesquisa: action.pesquisa
       };
 
     default:

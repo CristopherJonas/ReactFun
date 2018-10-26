@@ -24,7 +24,7 @@ export default class Listagem extends React.Component {
           <h2> Lista de Clientes</h2>
         </div>
         <hr />
-        <Formulario />
+        {/* <Formulario /> */}
         <br />
         <Opcoes />
         <br />

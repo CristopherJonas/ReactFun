@@ -3,7 +3,8 @@ import {
   ADD_CLIENTES,
   UPDATE_CLIENTE,
   REMOVE_CLIENTE,
-  SET_ORDENACAO
+  SET_ORDENACAO,
+  SET_PESQUISA
 } from "./types";
 
 const prepararCliente = cliente => {
@@ -44,4 +45,9 @@ export const removeCliente = id => ({ type: REMOVE_CLIENTE, id });
 export const setOrdenacao = ev => ({
   type: SET_ORDENACAO,
   ordenacao: ev.target.value
+});
+
+export const setPesquisa = ev => ({
+  type: SET_PESQUISA,
+  pesquisa: ev.target.value
 });
