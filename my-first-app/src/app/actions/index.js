@@ -4,7 +4,8 @@ import {
   UPDATE_CLIENTE,
   REMOVE_CLIENTE,
   SET_ORDENACAO,
-  SET_PESQUISA
+  SET_PESQUISA,
+  SET_CLIENTE
 } from "./types";
 
 const prepararCliente = cliente => {
@@ -51,3 +52,5 @@ export const setPesquisa = ev => ({
   type: SET_PESQUISA,
   pesquisa: ev.target.value
 });
+
+export const setClienteParaAlterar = cliente => ({type: SET_CLIENTE, cliente});

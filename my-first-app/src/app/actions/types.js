@@ -4,3 +4,4 @@ export const UPDATE_CLIENTE = "UPDATE_CLIENTE";
 export const REMOVE_CLIENTE = "REMOVE_CLIENTE";
 export const SET_ORDENACAO = "SET_ORDENACAO";
 export const SET_PESQUISA = "SET_PESQUISA";
+export const SET_CLIENTE = "SET_CLIENTE";

@@ -31,6 +31,20 @@ const DEFAULT_STATE = {
 class Formulario extends React.Component {
   state = DEFAULT_STATE;
 
+  componentWillUpdate(nextProps) {
+    debugger;
+    if (!this.props.cliente && nextProps.cliente) {
+      this.setState({
+        form: nextProps.cliente,
+        erros: {},
+        mostrarForm: true
+      });
+    }
+    if (this.props.cliente && !nextProps.cliente) {
+      this.setState(DEFAULT_STATE);
+    }
+  }
+
   validar = () => {
     const { form } = this.state;
     const erros = {};
@@ -52,7 +66,12 @@ class Formulario extends React.Component {
   handleSubmit = () => {
     if (!this.validar()) return null;
     const { form } = this.state;
-    this.props.addCliente(form);
+    const { cliente } = this.props;
+    if (cliente) {
+      this.props.updateCliente(cliente.id, form);
+    } else {
+      this.props.addCliente(form);
+    }
     this.setState(DEFAULT_STATE);
     this.setState({
       form: {
@@ -122,7 +141,7 @@ class Formulario extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  pesquisa: state.clientes.pesquisa
+  cliente: state.clientes.cliente
 });
 
 export default connect(

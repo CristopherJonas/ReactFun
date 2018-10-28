@@ -13,6 +13,10 @@ class Cliente extends React.Component {
     this.props.removeCliente(this.props.cliente.id);
   };
 
+  alterarCliente = () => {
+    this.props.setClienteParaAlterar(this.props.cliente);
+  };
+
   render() {
     const { cliente } = this.props;
     const { iniciouExclusao } = this.state;
@@ -22,6 +26,9 @@ class Cliente extends React.Component {
         <td> {cliente.telefone}</td>
         <td> {cliente.email}</td>
         <td> {cliente.cpf}</td>
+        <td onClick={this.alterarCliente} style={{ cursor: "pointer" }}>
+          {"alterar"}
+        </td>
         <td onClick={this.excluirCliente} style={{ cursor: "pointer" }}>
           {iniciouExclusao ? "certeza ?" : "excluir"}
         </td>

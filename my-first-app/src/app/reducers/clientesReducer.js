@@ -4,6 +4,7 @@ import {
   UPDATE_CLIENTE,
   REMOVE_CLIENTE,
   SET_ORDENACAO,
+  SET_CLIENTE,
   SET_PESQUISA
 } from "../actions/types";
 
@@ -24,6 +25,7 @@ export default (state = { ordenacao: "a-z" }, action) => {
     case UPDATE_CLIENTE:
       return {
         ...state,
+        cliente: null,
         clientes: state.clientes.map(
           _cliente =>
             _cliente.id === action.cliente ? action.cliente : _cliente
@@ -46,6 +48,12 @@ export default (state = { ordenacao: "a-z" }, action) => {
       return {
         ...state,
         pesquisa: action.pesquisa
+      };
+
+    case SET_CLIENTE:
+      return {
+        ...state,
+        cliente: action.cliente
       };
 
     default:
