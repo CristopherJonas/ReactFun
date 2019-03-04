@@ -17,6 +17,7 @@ class App extends Component {
   clear = () => {
     this.setState({ contador: 0 })
   }
+  
   render() {
     return (
       <div className="App">
